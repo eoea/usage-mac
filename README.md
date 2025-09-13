@@ -5,7 +5,7 @@ threshold using the `top` command. This program is designed as a showcase for
 building a C program and using SwiftUI for the GUI to display the data in the
 MacOS menu bar or notifications.
 
-**![example](/Users/emileantat/Programming/Repos/gitlab.com/eoea/usage-mac/img/example.png)**
+**![example](./img/example.png)**
 
 **Note**:
 
