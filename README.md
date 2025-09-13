@@ -1,6 +1,6 @@
 # README
 
-Simple program that checks if Idle CPU usage (across multiple cores) exceeds a
+Simple program that checks if CPU usage (across multiple cores) exceeds a
 threshold using the `top` command. This program is designed as a showcase for
 building a C program and using SwiftUI for the GUI to display the data in the
 MacOS menu bar or notifications.
