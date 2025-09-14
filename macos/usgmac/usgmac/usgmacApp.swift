@@ -40,10 +40,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem?.menu = menu
 
         // Timer to refresh CPU Usage.
-        timer = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: true) {
-            _ in
-            self.statusItem?.button?.title =
-                "CPU: \(UsgmacKit.um_cpu_notify().value)%"
+        if UsgmacKit.um_cpu_notify().notify == 1 {
+            timer = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: true) {
+                _ in
+                self.statusItem?.button?.title =
+                    "CPU: \(UsgmacKit.um_cpu_notify().value)%"
+            }
         }
     }
 }
