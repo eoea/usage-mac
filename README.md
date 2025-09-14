@@ -7,6 +7,15 @@ MacOS menu bar or notifications.
 
 **![example](./img/example.png)**
 
+The threshold is currently set to 1 to always show cpu usage >= 1% in
+`./src/main.c` file. If you adjust it an run the program you will not see the
+numbers until the threshold is reached, you will see an invisible box (unless
+you hover over it) for the usgmac program, only option is to quit the program.
+
+**![example2](./img/example2.png)**
+
+**![example3](./img/example3.png)**
+
 **Note**:
 
 - Program takes 3.5 seconds to show up after boot because there is an
