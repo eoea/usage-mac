@@ -1,10 +1,10 @@
 .PHONY: build clean run
 
 APP_NAME = "usgmac"
-FILE = "./src/main.c"
-OUT = "build/usgmac"
-MACOS_SRC_PATH =  "./macos/usgmac"
-XCFRAMEWORK_PATH = $(MACOS_SRC_PATH)/UsgmacKit.xcframework
+FILE = ./src/main.c
+OUT = build/usgmac
+MACOS_SRC_PATH =  ./macos/usgmac
+XCFRAMEWORK_PATH = $(MACOS_SRC_PATH)/usgmac/UsgmacKit.xcframework
 MODULEMAP_PATH = $(XCFRAMEWORK_PATH)/macos-arm64/Headers/module.modulemap
 
 fmt:
