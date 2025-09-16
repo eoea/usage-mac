@@ -1,7 +1,7 @@
 .PHONY: build clean run
 
 APP_NAME = "usgmac"
-FILE = ./src/main.c
+FILE = ./src/usgmac.c
 OUT = build/usgmac
 MACOS_SRC_PATH =  ./macos/usgmac
 XCFRAMEWORK_PATH = $(MACOS_SRC_PATH)/usgmac/UsgmacKit.xcframework

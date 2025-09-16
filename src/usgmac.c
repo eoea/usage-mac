@@ -5,10 +5,10 @@
 
 #include "include/um.h"
 
-#define NOTIFY_CPU_AT_VALUE 1  // TODO(eoea): value should be at 80 after test.
-#define MAX_CPU_STRING_LENGTH 256
+#define NOTIFY_CPU_AT_VALUE 80
+#define MAX_CPU_STRING_LENGTH 15
 
-char* um_get_cpu(void) {
+char* um_get_cpu_stats_malloc(void) {
   system(
       "top -l 1 -n 0 | grep \"idle\" | awk '{print $7}' >/tmp/cpu_usg_mac.txt");
 
@@ -34,9 +34,11 @@ char* um_get_cpu(void) {
 }
 
 um_result um_cpu_notify(void) {
-  um_result result = {0, 0.0};
+  um_result result;
+  result.notify = 0;
+  result.value = 0.0;
 
-  char* cpu_value = um_get_cpu();
+  char* cpu_value = um_get_cpu_stats_malloc();
   if (!cpu_value) {
     return result;
   }

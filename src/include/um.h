@@ -6,7 +6,7 @@ typedef struct {
   double value;
 } um_result;
 
-char* um_get_cpu(void);
+char* um_get_cpu_stats_malloc(void);
 um_result um_cpu_notify(void);
 
 #endif  // UM_H
