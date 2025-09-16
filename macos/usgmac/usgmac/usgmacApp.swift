@@ -39,13 +39,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(quitMenuItem)
         statusItem?.menu = menu
 
-        // Timer to refresh CPU Usage.
-        if UsgmacKit.um_cpu_notify().notify == 1 {
-            timer = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: true) {
-                _ in
-                self.statusItem?.button?.title =
-                    "CPU: \(UsgmacKit.um_cpu_notify().value)%"
-            }
+        timer = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: true) {
+            _ in
+            self.statusItem?.button?.title = UsgmacKit.um_cpu_notify().notify == 1 ? "CPU:\(UsgmacKit.um_cpu_notify().value)%" : ""
         }
     }
 }

@@ -1,16 +1,15 @@
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "include/um.h"
 
-#define NOTIFY_CPU_AT_VALUE 80
+#define NOTIFY_CPU_IDLE_AT_VALUE 20 // If this is 20 it means that CPU Usage is 80 (100 - N).
 #define MAX_CPU_STRING_LENGTH 15
 
 char* um_get_cpu_stats_malloc(void) {
   system(
-      "top -l 1 -n 0 | grep \"idle\" | awk '{print $7}' >/tmp/cpu_usg_mac.txt");
+      "top -l 1 -n 0 | grep \"idle\" | awk '{print $7}' > /tmp/cpu_usg_mac.txt");
 
   FILE* file = fopen("/tmp/cpu_usg_mac.txt", "r");
   if (!file) {
@@ -48,12 +47,12 @@ um_result um_cpu_notify(void) {
     cpu_value[len - 1] = '\0';
   }
 
-  double value = atof(cpu_value);
+  result.value = atof(cpu_value);
   free(cpu_value);
 
-  result.value = 100 - ceil(value);
-  if (value >= NOTIFY_CPU_AT_VALUE) {
+  if (result.value <= NOTIFY_CPU_IDLE_AT_VALUE) {
     result.notify = 1;
   }
+
   return result;
 }
