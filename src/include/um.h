@@ -1,5 +1,5 @@
-#ifndef UM_H
-#define UM_H
+#ifndef SRC_INCLUDE_UM_H_
+#define SRC_INCLUDE_UM_H_
 
 typedef struct {
   int notify;
@@ -9,4 +9,4 @@ typedef struct {
 char* um_get_cpu_stats_malloc(void);
 um_result um_cpu_notify(void);
 
-#endif  // UM_H
+#endif  // SRC_INCLUDE_UM_H_
