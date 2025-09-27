@@ -8,26 +8,26 @@
 #define MAX_CPU_STRING_LENGTH 15
 
 char* um_get_cpu_idle_stats_malloc(void) {
-  system(
-      "top -l 1 -n 0 | grep \"idle\" | awk '{print $7}' > /tmp/cpu_usg_mac.txt");
 
-  FILE* file = fopen("/tmp/cpu_usg_mac.txt", "r");
+  FILE* file = popen("top -l 1 -n 0 | grep \"idle\" | awk \'{print $7}\'", "r");
+
   if (!file) {
+    printf("ERROR: Failed to run command.");
     return NULL;
   }
 
   char* buffer = (char*)malloc(MAX_CPU_STRING_LENGTH);
   if (!buffer) {
-    fclose(file);
+    pclose(file);
     return NULL;
   }
 
-  if (fgets(buffer, MAX_CPU_STRING_LENGTH, file) == NULL) {
+  if (!fgets(buffer, MAX_CPU_STRING_LENGTH, file)) {
     free(buffer);
-    fclose(file);
+    pclose(file);
     return NULL;
   }
-  fclose(file);
+  pclose(file);
 
   return buffer;
 }
@@ -47,11 +47,11 @@ um_result um_cpu_notify(void) {
     cpu_idle_value[len - 1] = '\0';
   }
 
-  result.value = atof(cpu_idle_value);
+  result.value = atoi(cpu_idle_value);
   free(cpu_idle_value);
 
   if (result.value <= NOTIFY_CPU_IDLE_AT_VALUE) {
-    result.value = 100.0 - result.value; // (100 - idle)
+    result.value = 100 - result.value; // (100 - idle)
     result.notify = 1;
   }
 

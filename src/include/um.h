@@ -3,7 +3,7 @@
 
 typedef struct {
   int notify;
-  double value;
+  int value;
 } um_result;
 
 char* um_get_cpu_stats_malloc(void);
