@@ -35,7 +35,7 @@ char* um_get_cpu_idle_stats_malloc(void) {
 um_result um_cpu_notify(void) {
   um_result result;
   result.notify = 0;
-  result.value = 0.0;
+  result.value = 0;
 
   char* cpu_idle_value = um_get_cpu_idle_stats_malloc();
   if (!cpu_idle_value) {
